@@ -42,15 +42,15 @@ cat $HOME/.arcisd/config/genesis.json | jq -r --arg current_date "$current_date"
 
 # Set claims records for validator account
 amount_to_claim=10000
-cat $HOME/.arcisd/config/genesis.json | jq -r --arg node_address "$node_address" --arg amount_to_claim "$amount_to_claim" '.app_state["claims"]["claims_records"]=[{"initial_claimable_amount":$amount_to_claim, "actions_completed":[false, false, false, false],"address":$node_address}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
+cat $HOME/.arcisd/config/genesis.json | jq -r --arg node_address "$node_address" --arg amount_to_claim "$amount_to_claim" '.app_state["claims"]["claims_records"]=[{"initial_claimable_amount":$amount_to_claim, "actions_completed":[false, false, false, false],"address":arcis1dlrx2we7hdrak87x7mxu2jxfg7j2rf9rpymtd8}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
 
 # Set claims decay
 cat $HOME/.arcisd/config/genesis.json | jq -r --arg current_date "$current_date" '.app_state["claims"]["params"]["duration_of_decay"]="1000000s"' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
 cat $HOME/.arcisd/config/genesis.json | jq -r --arg current_date "$current_date" '.app_state["claims"]["params"]["duration_until_decay"]="100000s"' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
 
 # Claim module account:
-# 0xA61808Fe40fEb8B3433778BBC2ecECCAA47c8c47 || arcis15cvq3ljql6utxseh0zau9m8ve2j8erz89m5wkz
-cat $HOME/.arcisd/config/genesis.json | jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"arcis15cvq3ljql6utxseh0zau9m8ve2j8erz89m5wkz","coins":[{"denom":"aarcis", "amount":$amount_to_claim}]}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
+# 0xA61808Fe40fEb8B3433778BBC2ecECCAA47c8c47 || arcis1gctyr58e3gu08a2crstvxr7j8kmr9xanerqxnp
+cat $HOME/.arcisd/config/genesis.json | jq -r --arg amount_to_claim "$amount_to_claim" '.app_state["bank"]["balances"] += [{"address":"arcis1gctyr58e3gu08a2crstvxr7j8kmr9xanerqxnp","coins":[{"denom":"aarcis", "amount":$amount_to_claim}]}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
 
 # disable produce empty block
 if [[ "$OSTYPE" == "darwin"* ]]; then

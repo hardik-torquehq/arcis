@@ -31,7 +31,7 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: docker.io
-          username: Ambiplatforms-TORQUEhq
+          username: ambiplatforms-torquehq
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Build and push
@@ -40,4 +40,4 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64, linux/386, linux/arm64
-          tags: Ambiplatforms-TORQUEhq/arcis:latest, Ambiplatforms-TORQUEhq/arcis:${{ steps.meta.outputs.tag }}
+          tags: ambiplatforms-torquehq/arcis:latest, ambiplatforms-torquehq/arcis:${{ steps.meta.outputs.tag }}

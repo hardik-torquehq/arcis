@@ -60,16 +60,16 @@ You can build {{ $themeConfig.project.name }} using Docker by running:
 make build-docker
 ```
 
-The command above will create a docker container: `Ambiplatforms-TORQUEhq/arcis:latest`. Now you can run `arcisd` in the container.
+The command above will create a docker container: `ambiplatforms-torquehq/arcis:latest`. Now you can run `arcisd` in the container.
 
 ```bash
-docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd Ambiplatforms-TORQUEhq/arcis:latest arcisd version
+docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd ambiplatforms-torquehq/arcis:latest arcisd version
 
 # To initialize
-# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd Ambiplatforms-TORQUEhq/arcis:latest arcisd init test-chain --chain-id test_9000-2
+# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd ambiplatforms-torquehq/arcis:latest arcisd init test-chain --chain-id test_9000-2
 
 # To run
-# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd Ambiplatforms-TORQUEhq/arcis:latest arcisd start
+# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd ambiplatforms-torquehq/arcis:latest arcisd start
 ```
 
 ### Releases
