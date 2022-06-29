@@ -11,6 +11,7 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	genutiltypes "github.com/cosmos/cosmos-sdk/x/genutil/types"
 	paramskeeper "github.com/cosmos/cosmos-sdk/x/params/keeper"
+	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	upgradetypes "github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
@@ -21,9 +22,9 @@ import (
 	feemarketv011 "github.com/Ambiplatforms-TORQUE/ethermint/x/feemarket/migrations/v011"
 	feemarkettypes "github.com/Ambiplatforms-TORQUE/ethermint/x/feemarket/types"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/types"
-	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/keeper"
-	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/types"
+	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/keeper"
+	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/types"
 )
 
 // TestnetDenomMetadata defines the metadata for the tARCIS denom on testnet
@@ -55,6 +56,7 @@ func CreateUpgradeHandler(
 	sk stakingkeeper.Keeper,
 	pk paramskeeper.Keeper,
 	tk ibctransferkeeper.Keeper,
+	xk slashingkeeper.Keeper,
 ) upgradetypes.UpgradeHandler {
 	return func(ctx sdk.Context, _ upgradetypes.Plan, vm module.VersionMap) (module.VersionMap, error) {
 		logger := ctx.Logger().With("upgrade", UpgradeName)
@@ -84,7 +86,6 @@ func CreateUpgradeHandler(
 
 		logger.Debug("migrating early contributor claim record...")
 		MigrateContributorClaim(ctx, ck)
-
 		// define from versions of the modules that have a new consensus version
 
 		// migrate fee market module, other modules are left as-is to

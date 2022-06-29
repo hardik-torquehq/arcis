@@ -1,7 +1,7 @@
 package keeper
 
 import (
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 

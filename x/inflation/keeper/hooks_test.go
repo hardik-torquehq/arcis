@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"time"
 
-	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/inflation/types"
+	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/inflation/types"
 )
 
 func (suite *KeeperTestSuite) TestEpochIdentifierAfterEpochEnd() {

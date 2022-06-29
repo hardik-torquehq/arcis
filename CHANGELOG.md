@@ -35,13 +35,36 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## [v1.0.1] - 2022-06-28
+
+### Improvements
+
+- (ci) [\#729](https://github.com/Ambiplatforms-TORQUE/arcis/pull/729) Remove unshallow action in goreleaser.
+
+## [v1.0.1a] - 2022-06-28
+
+### State Machine Breaking
+
+- (deps) [\#719](https://github.com/Ambiplatforms-TORQUE/arcis/pull/719) Bump Ethermint version to [`v0.1.1`](https://github.com/Ambiplatforms-TORQUE/ethermint/releases/tag/v0.1.1)
+
+### API Breaking
+
+- (all) [\#701](https://github.com/Ambiplatforms-TORQUE/arcis/pull/703) Rename Go module to `Ambiplatforms-TORQUE/arcis`
+- (fees) [\#691](https://github.com/Ambiplatforms-TORQUE/arcis/pull/691) Internal API audit.
+
+### Improvements
+
+- (deps) [\#714](https://github.com/Ambiplatforms-TORQUE/arcis/pull/714) Bump Go version to `1.18`.
+- (cmd) [\#696](https://github.com/Ambiplatforms-TORQUE/arcis/pull/696) Set a custom tendermint node configuration on initialization.
+- (fees) [\#685](https://github.com/Ambiplatforms-TORQUE/arcis/pull/685) Internal Specification audit.
+
 ## [v1.0.0] - 2022-06-14
 
 ### State Machine Breaking
 
 - (deps) [\#684](https://github.com/Ambiplatforms-TORQUE/arcis/pull/684) Bump ibc-go version to [`v3.1.0`](https://github.com/cosmos/ibc-go/releases/tag/v3.1.0)
 - (vesting) [\#666](https://github.com/Ambiplatforms-TORQUE/arcis/pull/666) Remove support of Cosmos SDK `VestingAccount` types.
-- (deps) [\#654](https://github.com/Ambiplatforms-TORQUE/arcis/pull/663) Bump Ethermint version to [`v0.1.0`](https://github.com/Ambiplatforms-TORQUE/ethermint/releases/tag/v0.1.0)
+- (deps) [\#663](https://github.com/Ambiplatforms-TORQUE/arcis/pull/663) Bump Ethermint version to [`v0.16.1`](https://github.com/Ambiplatforms-TORQUE/ethermint/releases/tag/v0.16.1)
 - (claims) [\#605](https://github.com/Ambiplatforms-TORQUE/arcis/pull/605) Remove duplicated `SetClaimsRecord`.
 - (erc20) [\#602](https://github.com/Ambiplatforms-TORQUE/arcis/pull/602) Modified `RegisterERC20` proposals. Fix erc20 name sanitization to allow spaces on token name.
 

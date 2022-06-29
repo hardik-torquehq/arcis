@@ -42,7 +42,7 @@ cat $HOME/.arcisd/config/genesis.json | jq -r --arg current_date "$current_date"
 
 # Set claims records for validator account
 amount_to_claim=10000
-#cat $HOME/.arcisd/config/genesis.json | jq -r --arg node_address "$node_address" --arg amount_to_claim "$amount_to_claim" '.app_state["claims"]["claims_records"]=[{"initial_claimable_amount":$amount_to_claim, "actions_completed":[false, false, false, false],"address":arcis1dlrx2we7hdrak87x7mxu2jxfg7j2rf9rpymtd8}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
+#cat $HOME/.arcisd/config/genesis.json | jq -r --arg node_address "$node_address" --arg amount_to_claim "$amount_to_claim" '.app_state["claims"]["claims_records"]=[{"initial_claimable_amount":$amount_to_claim, "actions_completed":[false, false, false, false],"address":$node_address}]' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json
 
 # Set claims decay
 cat $HOME/.arcisd/config/genesis.json | jq -r --arg current_date "$current_date" '.app_state["claims"]["params"]["duration_of_decay"]="1000000s"' > $HOME/.arcisd/config/tmp_genesis.json && mv $HOME/.arcisd/config/tmp_genesis.json $HOME/.arcisd/config/genesis.json

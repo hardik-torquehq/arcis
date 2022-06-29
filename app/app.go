@@ -105,35 +105,36 @@ import (
 	feemarkettypes "github.com/Ambiplatforms-TORQUE/ethermint/x/feemarket/types"
 
 	// unnamed import of statik for swagger UI support
-	_ "github.com/Ambiplatforms-TORQUE/arcis/v5/client/docs/statik"
+	_ "github.com/Ambiplatforms-TORQUE/arcis/v6/client/docs/statik"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/app/ante"
-	v2 "github.com/Ambiplatforms-TORQUE/arcis/v5/app/upgrades/v2"
-	v4 "github.com/Ambiplatforms-TORQUE/arcis/v5/app/upgrades/v4"
-	v5 "github.com/Ambiplatforms-TORQUE/arcis/v5/app/upgrades/v5"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims"
-	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/keeper"
-	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs"
-	epochskeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/keeper"
-	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/erc20"
-	erc20client "github.com/Ambiplatforms-TORQUE/arcis/v5/x/erc20/client"
-	erc20keeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/erc20/keeper"
-	erc20types "github.com/Ambiplatforms-TORQUE/arcis/v5/x/erc20/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/incentives"
-	incentivesclient "github.com/Ambiplatforms-TORQUE/arcis/v5/x/incentives/client"
-	incentiveskeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/incentives/keeper"
-	incentivestypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/incentives/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/inflation"
-	inflationkeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/inflation/keeper"
-	inflationtypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/inflation/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/recovery"
-	recoverykeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/recovery/keeper"
-	recoverytypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/recovery/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/vesting"
-	vestingkeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/vesting/keeper"
-	vestingtypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/vesting/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/app/ante"
+	v2 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v2"
+	v4 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v4"
+	v5 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v5"
+	v6 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v6"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims"
+	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/keeper"
+	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs"
+	epochskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/keeper"
+	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20"
+	erc20client "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/client"
+	erc20keeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/keeper"
+	erc20types "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives"
+	incentivesclient "github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives/client"
+	incentiveskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives/keeper"
+	incentivestypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/inflation"
+	inflationkeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/inflation/keeper"
+	inflationtypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/inflation/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/recovery"
+	recoverykeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/recovery/keeper"
+	recoverytypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/recovery/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/vesting"
+	vestingkeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/vesting/keeper"
+	vestingtypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/vesting/types"
 )
 
 func init() {
@@ -1035,6 +1036,21 @@ func (app *Arcis) setupUpgradeHandlers() {
 			app.StakingKeeper,
 			app.ParamsKeeper,
 			app.TransferKeeper,
+			app.SlashingKeeper,
+		),
+	)
+
+	// v6 upgrade handler
+	app.UpgradeKeeper.SetUpgradeHandler(
+		v6.UpgradeName,
+		v6.CreateUpgradeHandler(
+			app.mm, app.configurator,
+			app.BankKeeper,
+			app.ClaimsKeeper,
+			app.StakingKeeper,
+			app.ParamsKeeper,
+			app.TransferKeeper,
+			app.SlashingKeeper,
 		),
 	)
 
@@ -1059,6 +1075,8 @@ func (app *Arcis) setupUpgradeHandlers() {
 		// no store upgrades in v4
 	case v5.UpgradeName:
 		// no store upgrades in v5
+	case v6.UpgradeName:
+		// no store upgrades in v6
 	}
 
 	if storeUpgrades != nil {

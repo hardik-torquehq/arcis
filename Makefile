@@ -188,12 +188,12 @@ RUNSIM         = $(TOOLS_DESTDIR)/runsim
 runsim: $(RUNSIM)
 $(RUNSIM):
 	@echo "Installing runsim..."
-	@(cd /tmp && ${GO_MOD} go install github.com/cosmos/tools/cmd/runsim@master)
+	@(cd /tmp && ${GO_MOD} go get github.com/cosmos/tools/cmd/runsim@master)
 
 statik: $(STATIK)
 $(STATIK):
 	@echo "Installing statik..."
-	@(cd /tmp && go install github.com/rakyll/statik@v0.1.6)
+	@(cd /tmp && go get github.com/rakyll/statik@v0.1.6)
 
 contract-tools:
 ifeq (, $(shell which stringer))
@@ -229,14 +229,6 @@ ifeq (, $(shell which protoc-gen-go-grpc))
 	@go install google.golang.org/grpc/cmd/protoc-gen-go-grpc
 else
 	@echo "protoc-gen-go-grpc already installed; skipping..."
-endif
-
-ifeq (, $(shell which protoc))
-	@echo "Please istalling protobuf according to your OS"
-	@echo "macOS: brew install protobuf"
-	@echo "linux: apt-get install -f -y protobuf-compiler"
-else
-	@echo "protoc already installed; skipping..."
 endif
 
 ifeq (, $(shell which solcjs))
@@ -425,6 +417,7 @@ benchmark:
 
 lint:
 	golangci-lint run --out-format=tab
+	solhint contracts/**/*.sol
 
 lint-contracts:
 	@cd contracts && \
@@ -438,6 +431,7 @@ lint-fix-contracts:
 	@cd contracts && \
 	npm i && \
 	npm run lint-fix
+	solhint --fix contracts/**/*.sol
 
 .PHONY: lint lint-fix
 
@@ -481,7 +475,7 @@ proto-check-breaking:
 TM_URL              = https://raw.githubusercontent.com/tendermint/tendermint/v0.34.15/proto/tendermint
 GOGO_PROTO_URL      = https://raw.githubusercontent.com/regen-network/protobuf/cosmos
 COSMOS_SDK_URL      = https://raw.githubusercontent.com/cosmos/cosmos-sdk/v0.45.1
-ETHERMINT_URL      	= https://raw.githubusercontent.com/Ambiplatforms-TORQUE/ethermint/v0.1.0
+ETHERMINT_URL      	= https://raw.githubusercontent.com/Ambiplatforms-TORQUE/ethermint/v0.10.0
 IBC_GO_URL      		= https://raw.githubusercontent.com/cosmos/ibc-go/v3.0.0-rc0
 COSMOS_PROTO_URL    = https://raw.githubusercontent.com/regen-network/cosmos-proto/master
 
@@ -571,43 +565,6 @@ localnet-show-logstream:
 	docker-compose logs --tail=1000 -f
 
 .PHONY: build-docker-local-arcis localnet-start localnet-stop
-
-###############################################################################
-###                                Releasing                                ###
-###############################################################################
-
-PACKAGE_NAME:=github.com/Ambiplatforms-TORQUE/arcis
-GOLANG_CROSS_VERSION  = v1.17.1
-GOPATH ?= '$(HOME)/go'
-release-dry-run:
-	docker run \
-		--rm \
-		--privileged \
-		-e CGO_ENABLED=1 \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		-v `pwd`:/go/src/$(PACKAGE_NAME) \
-		-v ${GOPATH}/pkg:/go/pkg \
-		-w /go/src/$(PACKAGE_NAME) \
-		ghcr.io/troian/golang-cross:${GOLANG_CROSS_VERSION} \
-		--rm-dist --skip-validate --skip-publish --snapshot
-
-release:
-	@if [ ! -f ".release-env" ]; then \
-		echo "\033[91m.release-env is required for release\033[0m";\
-		exit 1;\
-	fi
-	docker run \
-		--rm \
-		--privileged \
-		-e CGO_ENABLED=1 \
-		--env-file .release-env \
-		-v /var/run/docker.sock:/var/run/docker.sock \
-		-v `pwd`:/go/src/$(PACKAGE_NAME) \
-		-w /go/src/$(PACKAGE_NAME) \
-		ghcr.io/troian/golang-cross:${GOLANG_CROSS_VERSION} \
-		release --rm-dist --skip-validate
-
-.PHONY: release-dry-run release
 
 ###############################################################################
 ###                        Compile Solidity Contracts                       ###

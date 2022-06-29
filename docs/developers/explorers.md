@@ -24,6 +24,7 @@ Below is a list of public block explorers that support Arcis Mainnet and Testnet
 | BigDipper  | `cosmos` | [arcis.bigdipper.live/](https://arcis.bigdipper.live/) |
 | Blockscout | `evm`    | [evm.arcis.org](https://evm.arcis.org/)                |
 | ATOMScan   | `cosmos` | [atomscan.com/arcis](https://atomscan.com/arcis)       |
+| NGExplorer   | `cosmos` | [arcis.explorers.guru](https://arcis.explorers.guru)       |
 :::
 ::: tab Testnet
 
@@ -32,5 +33,6 @@ Below is a list of public block explorers that support Arcis Mainnet and Testnet
 | BigDipper  | `cosmos` | [testnet.bigdipper.live](https://testnet.arcis.bigdipper.live/)                |
 | Blockscout | `evm`    | [evm.arcis.dev](https://evm.arcis.dev/)                                        |
 | Mintscan   | `cosmos` | [testnet.mintscan.io/arcis-testnet](https://testnet.mintscan.io/arcis-testnet) |
+| NGExplorer   | `cosmos` | [testnet.arcis.explorers.guru](https://testnet.arcis.explorers.guru)       |
 :::
 ::::

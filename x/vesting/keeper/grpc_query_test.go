@@ -6,8 +6,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/testutil"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/vesting/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/testutil"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/vesting/types"
 	"github.com/Ambiplatforms-TORQUE/ethermint/tests"
 )
 
