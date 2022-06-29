@@ -10,12 +10,12 @@ This document outlines the steps to join an existing testnet {synopsis}
 
 You specify the network you want to join by setting the **genesis file** and **seeds**. If you need more information about past networks, check our [testnets repo](https://github.com/Ambiplatforms-TORQUE/testnets).
 
-| Testnet Chain ID | Description                       | Site                                                                       | Version                                                                      | Status  |
-| ---------------- | --------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------- |
-| `arcis_9000-4`   | Arcis_9000-4 Testnet              | [Arcis 9000-4](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-4) | [`v4.0.1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/v4.0.1)                 | `Live`  |
-| `arcis_9000-3`   | Arcis_9000-3 Testnet              | [Arcis 9000-3](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-3) | [`v1.0.0-beta1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/tag/v1.0.0-beta1) | `Stale` |
-| `arcis_9000-2`   | Olympus Mons Incentivized Testnet | [Olympus Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/olympus_mons) | [`v0.3.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                        | `Stale` |
-| `arcis_9000-1`   | Arsia Mons Testnet                | [Arsia Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arsia_mons)     | [`v0.1.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                        | `Stale` |
+| Testnet Chain ID | Description                       | Site                                                                       | Version                                                                                  | Status  |
+| ---------------- | --------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------- |
+| `arcis_9000-4`   | Arcis_9000-4 Testnet              | [Arcis 9000-4](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-4) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
+| `arcis_9000-3`   | Arcis_9000-3 Testnet              | [Arcis 9000-3](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-3) | [`v1.0.0-beta1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/tag/v1.0.0-beta1)             | `Stale` |
+| `arcis_9000-2`   | Olympus Mons Incentivized Testnet | [Olympus Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/olympus_mons) | [`v0.3.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
+| `arcis_9000-1`   | Arsia Mons Testnet                | [Arsia Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arsia_mons)     | [`v0.1.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
 
 ## Install `arcisd`
 

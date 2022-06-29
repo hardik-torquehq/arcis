@@ -45,9 +45,9 @@ import (
 	"github.com/ethereum/go-ethereum/core/vm"
 	tmjson "github.com/tendermint/tendermint/libs/json"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/app"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/contracts"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/erc20/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/app"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/contracts"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/types"
 )
 
 type KeeperTestSuite struct {

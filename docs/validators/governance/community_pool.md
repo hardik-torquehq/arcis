@@ -4,17 +4,16 @@ order: 5
 
 # Community Pool
 
-Arcis token-holders can cast a vote to approve spending from the Community Pool to fund development and projects in the
-Arcis ecosystem.
+Arcis token-holders can cast a vote to approve spending from the Community Pool to fund development and projects in the Arcis ecosystem.
 
 ## Why create a proposal to use Community Pool funds?
 
-There are other funding options, most notably the Arcis Foundation's grant program. Why create a community-spend proposal?
+There are other funding options, most notably the [Arcis Grants Program](https://medium.com/arcis/announcing-arcis-grants-78aa28562db6). Why create a community-spend proposal?
 
-- **As a strategy: you can do both.** You can submit your proposal to the Interchain Foundation, but also consider submitting your proposal publicly on-chain. If the Arcis community votes in favour, you can withdraw your application.
+- **As a strategy: you can do both.** You can submit your proposal to the Arcis Grants Program, but also consider submitting your proposal publicly on-chain. If the Arcis community votes in favor, you can withdraw your application.
 - **As a strategy: funding is fast.** Besides the time it takes to push your proposal on-chain, the only other limiting factor is a fixed 5-day voting period. As soon as the proposal passes, your account will be credited the full amount of your proposal request.
 - **To build rapport.** Engaging publicly with the community is the opportunity to develop relationships with stakeholders and to educate them about the importance of your work. Unforeseen partnerships could arise, and overall the community may value your work more if they are involved as stakeholders.
-- **To be more independent.** The Arcis Foundation may not always be able to fund work. Having a more consistently funded source and having a report with its stakeholders means you can use your rapport to have confidence in your ability to secure funding without having to be dependent upon the foundation alone.
+- **To be more independent.** The [Arcis Grants Program](https://medium.com/arcis/announcing-arcis-grants-78aa28562db6) may not always be able to fund work. Having a more consistently funded source and having a report with its stakeholders means you can use your rapport to have confidence in your ability to secure funding without having to be dependent upon the foundation alone.
 
 ## FAQ
 

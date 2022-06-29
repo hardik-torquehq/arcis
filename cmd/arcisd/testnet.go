@@ -43,9 +43,9 @@ import (
 	ethermint "github.com/Ambiplatforms-TORQUE/ethermint/types"
 	evmtypes "github.com/Ambiplatforms-TORQUE/ethermint/x/evm/types"
 
-	cmdcfg "github.com/Ambiplatforms-TORQUE/arcis/v5/cmd/config"
-	arciskr "github.com/Ambiplatforms-TORQUE/arcis/v5/crypto/keyring"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/testutil/network"
+	cmdcfg "github.com/Ambiplatforms-TORQUE/arcis/v6/cmd/config"
+	arciskr "github.com/Ambiplatforms-TORQUE/arcis/v6/crypto/keyring"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/testutil/network"
 )
 
 var (

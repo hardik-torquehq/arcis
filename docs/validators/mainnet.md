@@ -20,7 +20,7 @@ You need to set the **genesis file** and **seeds**. If you need more information
 
 | Chain ID       | Description     | Site                                                               | Version                                                      | Status  |
 | -------------- | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| `arcis_9001-2` | Arcis Mainnet 2 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_9001-2) | [`v4.0.1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/v4.0.1) | `Live`  |
+| `arcis_9001-2` | Arcis Mainnet 2 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_9001-2) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
 | `arcis_9001-1` | Arcis Mainnet 1 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_9001-1) | [`v2.0.1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/v2.0.1) | `Stale` |
 
 ## Install `arcisd`

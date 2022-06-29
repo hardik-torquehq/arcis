@@ -7,7 +7,6 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	abci "github.com/tendermint/tendermint/abci/types"
 	"github.com/tendermint/tendermint/crypto/tmhash"
 	tmproto "github.com/tendermint/tendermint/proto/tendermint/types"
 	tmversion "github.com/tendermint/tendermint/proto/tendermint/version"
@@ -15,7 +14,6 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/cosmos/cosmos-sdk/x/upgrade/types"
 
 	"github.com/Ambiplatforms-TORQUE/ethermint/crypto/ethsecp256k1"
 	"github.com/Ambiplatforms-TORQUE/ethermint/tests"
@@ -23,10 +21,11 @@ import (
 
 	ibctransfertypes "github.com/cosmos/ibc-go/v3/modules/apps/transfer/types"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/app"
-	v5 "github.com/Ambiplatforms-TORQUE/arcis/v5/app/upgrades/v5"
-	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/keeper"
-	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/claims/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/app"
+	v5 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v5"
+	arcistypes "github.com/Ambiplatforms-TORQUE/arcis/v6/types"
+	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/keeper"
+	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/types"
 )
 
 type UpgradeTestSuite struct {
@@ -37,7 +36,7 @@ type UpgradeTestSuite struct {
 	consAddress sdk.ConsAddress
 }
 
-func (suite *UpgradeTestSuite) SetupTest() {
+func (suite *UpgradeTestSuite) SetupTest(chainID string) {
 	feemarkettypes.DefaultMinGasPrice = v5.MainnetMinGasPrices
 	checkTx := false
 
@@ -50,7 +49,7 @@ func (suite *UpgradeTestSuite) SetupTest() {
 	suite.app = app.Setup(checkTx, feemarkettypes.DefaultGenesisState())
 	suite.ctx = suite.app.BaseApp.NewContext(checkTx, tmproto.Header{
 		Height:          1,
-		ChainID:         "arcis_9001-2",
+		ChainID:         chainID,
 		Time:            time.Date(2022, 5, 9, 8, 0, 0, 0, time.UTC),
 		ProposerAddress: suite.consAddress.Bytes(),
 
@@ -80,59 +79,6 @@ func (suite *UpgradeTestSuite) SetupTest() {
 func TestUpgradeTestSuite(t *testing.T) {
 	s := new(UpgradeTestSuite)
 	suite.Run(t, s)
-}
-
-func (suite *UpgradeTestSuite) TestScheduledUpgrade() {
-	testCases := []struct {
-		name       string
-		preUpdate  func()
-		update     func()
-		postUpdate func()
-	}{
-		{
-			"scheduled upgrade",
-			func() {
-				plan := types.Plan{
-					Name:   v5.UpgradeName,
-					Height: v5.MainnetUpgradeHeight,
-					Info:   v5.UpgradeInfo,
-				}
-				err := suite.app.UpgradeKeeper.ScheduleUpgrade(suite.ctx, plan)
-				suite.Require().NoError(err)
-
-				// ensure the plan is scheduled
-				plan, found := suite.app.UpgradeKeeper.GetUpgradePlan(suite.ctx)
-				suite.Require().True(found)
-			},
-			func() {
-				suite.ctx = suite.ctx.WithBlockHeight(v5.MainnetUpgradeHeight)
-				suite.Require().NotPanics(
-					func() {
-						beginBlockRequest := abci.RequestBeginBlock{
-							Header: suite.ctx.BlockHeader(),
-						}
-						suite.app.BeginBlocker(suite.ctx, beginBlockRequest)
-					},
-				)
-			},
-			func() {
-				// check that the default params have been overridden by the init function
-				fmParams := suite.app.FeeMarketKeeper.GetParams(suite.ctx)
-				suite.Require().Equal(v5.MainnetMinGasPrices.String(), fmParams.MinGasPrice.String())
-				suite.Require().Equal(v5.MainnetMinGasMultiplier.String(), fmParams.MinGasMultiplier.String())
-			},
-		},
-	}
-
-	for _, tc := range testCases {
-		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
-			suite.SetupTest() // reset
-
-			tc.preUpdate()
-			tc.update()
-			tc.postUpdate()
-		})
-	}
 }
 
 func (suite *UpgradeTestSuite) TestResolveAirdrop() {
@@ -175,7 +121,7 @@ func (suite *UpgradeTestSuite) TestResolveAirdrop() {
 
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
-			suite.SetupTest() // reset
+			suite.SetupTest(arcistypes.TestnetChainID + "-2") // reset
 
 			addr := addClaimRecord(suite.ctx, suite.app.ClaimsKeeper, tc.original)
 
@@ -223,7 +169,7 @@ func (suite *UpgradeTestSuite) TestMigrateClaim() {
 	}
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
-			suite.SetupTest() // reset
+			suite.SetupTest(arcistypes.TestnetChainID + "-2") // reset
 
 			tc.malleate()
 
@@ -284,7 +230,7 @@ func (suite *UpgradeTestSuite) TestUpdateConsensusParams() {
 
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
-			suite.SetupTest() // reset
+			suite.SetupTest(arcistypes.TestnetChainID + "-2") // reset
 
 			tc.malleate()
 
@@ -410,7 +356,7 @@ func (suite *UpgradeTestSuite) TestUpdateIBCDenomTraces() {
 
 	for _, tc := range testCases {
 		suite.Run(fmt.Sprintf("Case %s", tc.name), func() {
-			suite.SetupTest() // reset
+			suite.SetupTest(arcistypes.TestnetChainID + "-2") // reset
 
 			for _, dt := range tc.originalTraces {
 				suite.app.TransferKeeper.SetDenomTrace(suite.ctx, dt)

@@ -15,10 +15,11 @@ archived [9001-1 mainnet](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/m
 :::: tabs
 ::: tab Snapshots
 
-| Name       | URL                                                                     |
-| -----------|------------------------------------------------------------------------ |
-| `Staketab` | [github.com/staketab/nginx-cosmos-snap](https://github.com/staketab/nginx-cosmos-snap/blob/main/docs/arcis.md) |
-| `Polkachu` | [polkachu.com](https://www.polkachu.com/tendermint_snapshots/arcis)                   |
+| Name        | URL                                                                     |
+| -------------|------------------------------------------------------------------------ |
+| `Staketab`   | [github.com/staketab/nginx-cosmos-snap](https://github.com/staketab/nginx-cosmos-snap/blob/main/docs/arcis.md) |
+| `Polkachu`   | [polkachu.com](https://www.polkachu.com/tendermint_snapshots/arcis)                   |
+| `Nodes Guru` | [snapshots.nodes.guru/arcis_9001-2/](snapshots.nodes.guru/arcis_9001-2/)                   |
 :::
 ::: tab Archives
 <!-- markdown-link-check-disable -->
@@ -30,3 +31,11 @@ archived [9001-1 mainnet](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/m
 | `Forbole`      | [bigdipper.live/arcis_9001-1](https://s3.bigdipper.live.eu-central-1.linodeobjects.com/arcis_9001-1.tar.lz4) |
 :::
 ::::
+
+To access snapshots and archives, follow the process below (this code snippet is to access a snapshot of the current network, `arcis_9001-2`, from Nodes Guru):
+
+```bash
+cd $HOME/.arcisd/data
+wget https://snapshots.nodes.guru/arcis_9001-2/arcis_9001-2-410819.tar
+tar xf arcis_9001-2-410819.tar
+```

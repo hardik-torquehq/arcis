@@ -19,8 +19,8 @@ import (
 
 	evm "github.com/Ambiplatforms-TORQUE/ethermint/x/evm/types"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/app"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/app"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/types"
 )
 
 var denomMint = evm.DefaultEVMDenom
