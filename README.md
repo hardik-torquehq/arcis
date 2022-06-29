@@ -7,9 +7,6 @@ parent:
   <h1> Arcis </h1>
 </div>
 
-<!-- TODO: add banner -->
-<!-- ![banner](docs/ethermint.jpg) -->
-
 <div align="center">
   <a href="https://github.com/Ambiplatforms-TORQUE/arcis/releases/latest">
     <img alt="Version" src="https://img.shields.io/github/tag/Ambiplatforms-TORQUE/arcis.svg" />
@@ -45,7 +42,7 @@ parent:
 Arcis is a scalable, high-throughput Proof-of-Stake blockchain that is fully compatible and
 interoperable with Ethereum. It's built using the [Cosmos SDK](https://github.com/cosmos/cosmos-sdk/) which runs on top of [Tendermint Core](https://github.com/tendermint/tendermint) consensus engine.
 
-**Note**: Requires [Go 1.17.5+](https://golang.org/dl/)
+**Note**: Requires [Go 1.18+](https://golang.org/dl/)
 
 ## Installation
 
@@ -78,4 +75,4 @@ For additional instructions, standards and style guides, please refer to the [Co
 
 ## Careers
 
-See our open positions on [Cosmos Jobs](https://jobs.cosmos.network/project/arcis-d0sk1uxuh-remote/), [Notion](https://Ambiplatforms-TORQUE.notion.site), or feel free to [reach out](mailto:careers@thars.is) via email.
+See our open positions on [Cosmos Jobs](https://jobs.cosmos.network/project/arcis-d0sk1uxuh-remote/), [Notion](https://Ambiplatforms-TORQUE.notion.site), or feel free to [reach out](mailto:careers@Ambiplatforms-TORQUE.com) via email.

@@ -3,8 +3,8 @@ package keeper
 import (
 	"fmt"
 
-	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v5/x/epochs/types"
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/x/inflation/types"
+	epochstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/epochs/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/inflation/types"
 	"github.com/armon/go-metrics"
 	"github.com/cosmos/cosmos-sdk/telemetry"
 	sdk "github.com/cosmos/cosmos-sdk/types"

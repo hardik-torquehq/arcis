@@ -14,7 +14,7 @@ import (
 	"github.com/Ambiplatforms-TORQUE/ethermint/testutil/network"
 	"github.com/ethereum/go-ethereum/ethclient"
 
-	arcisnetwork "github.com/Ambiplatforms-TORQUE/arcis/v5/testutil/network"
+	arcisnetwork "github.com/Ambiplatforms-TORQUE/arcis/v6/testutil/network"
 )
 
 type IntegrationTestSuite struct {

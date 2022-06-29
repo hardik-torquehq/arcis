@@ -6,6 +6,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"time"
 
 	"github.com/cosmos/cosmos-sdk/simapp/params"
 	"github.com/cosmos/cosmos-sdk/snapshots"
@@ -38,9 +39,9 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/crisis"
 	genutilcli "github.com/cosmos/cosmos-sdk/x/genutil/client/cli"
 
-	"github.com/Ambiplatforms-TORQUE/arcis/v5/app"
-	cmdcfg "github.com/Ambiplatforms-TORQUE/arcis/v5/cmd/config"
-	arciskr "github.com/Ambiplatforms-TORQUE/arcis/v5/crypto/keyring"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/app"
+	cmdcfg "github.com/Ambiplatforms-TORQUE/arcis/v6/cmd/config"
+	arciskr "github.com/Ambiplatforms-TORQUE/arcis/v6/crypto/keyring"
 )
 
 const (
@@ -91,9 +92,19 @@ func NewRootCmd() (*cobra.Command, params.EncodingConfig) {
 				return err
 			}
 
+			// override the app and tendermint configuration
 			customAppTemplate, customAppConfig := initAppConfig()
 
-			return sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig)
+			err = sdkserver.InterceptConfigsPreRunHandler(cmd, customAppTemplate, customAppConfig)
+			if err != nil {
+				return err
+			}
+
+			// TODO: remove the lines below once Cosmos SDK v0.46 is released
+			serverCtx := sdkserver.GetServerContextFromCmd(cmd)
+			serverCtx.Config.Consensus.TimeoutCommit = time.Second
+
+			return sdkserver.SetCmdServerContext(cmd, serverCtx)
 		},
 	}
 

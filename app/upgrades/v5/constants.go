@@ -9,8 +9,6 @@ import (
 const (
 	// UpgradeName is the shared upgrade plan name for mainnet and testnet
 	UpgradeName = "v1.0.0"
-	// MainnetUpgradeHeight defines the Arcis mainnet block height on which the upgrade will take place
-	MainnetUpgradeHeight = 837_500
 	// TestnetUpgradeHeight defines the Arcis testnet block height on which the upgrade will take place
 	TestnetUpgradeHeight = 1_762_500
 	// UpgradeInfo defines the binaries that will be used for the upgrade
@@ -31,9 +29,9 @@ const (
 )
 
 var (
-	// MainnetMinGasPrices defines 25B aarcis (or atarcis) as the minimum gas price value on the fee market module.
+	// MainnetMinGasPrices defines 20B aarcis (or atarcis) as the minimum gas price value on the fee market module.
 	// See https://commonwealth.im/arcis/discussion/5073-global-min-gas-price-value-for-cosmos-sdk-and-evm-transaction-choosing-a-value for reference
-	MainnetMinGasPrices = sdk.NewDec(25_000_000_000)
+	MainnetMinGasPrices = sdk.NewDec(20_000_000_000)
 	// MainnetMinGasMultiplier defines the min gas multiplier value on the fee market module.
 	// 50% of the leftover gas will be refunded
 	MainnetMinGasMultiplier = sdk.NewDecWithPrec(5, 1)
