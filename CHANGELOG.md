@@ -35,6 +35,14 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 # Changelog
 
+## [v1.0.2] - 2022-07-07
+
+### Improvements
+
+- (ci) [\#18](https://github.com/Ambiplatforms-TORQUE/arcis/pull/18) Add and connect a new docker account, rerun and sync ignite systems, protobuf files updated accordingly.
+
+- (modules) [\#19](https://github.com/Ambiplatforms-TORQUE/arcis/pull/19) Integrate feesplit module and conduct state machine audit.
+
 ## [v1.0.1] - 2022-06-28
 
 ### Improvements
