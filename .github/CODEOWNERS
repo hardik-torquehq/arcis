@@ -1,17 +1,17 @@
 # CODEOWNERS: https://help.github.com/articles/about-codeowners/
 
 # Primary (global) repo maintainers
-*       @fedekunze @khoslaventures @jolube @danburck 
+*       @Karan-3108  @ Ambiplatforms-TORQUE 
 
 # Documentation
-docs/ @danburck
+docs/ @ Ambiplatforms-TORQUE
 
 # Arcis Modules
-x/claims/ @ramacarlucho
-x/epochs/ @ramacarlucho
-x/erc20/ @ramacarlucho @hanchon
-x/fees/ @ramacarlucho
-x/incentives/ @ramacarlucho
-x/inflation/ @ramacarlucho
-x/recovery/ @ramacarlucho
-x/vesting/ @ramacarlucho
+x/claims/ @Karan-3108
+x/epochs/ @Karan-3108
+x/erc20/ @Karan-3108 @Karan-3108
+x/fees/ @Karan-3108
+x/incentives/ @Karan-3108
+x/inflation/ @Karan-3108
+x/recovery/ @Karan-3108
+x/vesting/ @Karan-3108

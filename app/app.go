@@ -122,6 +122,9 @@ import (
 	erc20client "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/client"
 	erc20keeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/keeper"
 	erc20types "github.com/Ambiplatforms-TORQUE/arcis/v6/x/erc20/types"
+	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/feesplit"
+	feesplitkeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/feesplit/keeper"
+	feesplittypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/feesplit/types"
 	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives"
 	incentivesclient "github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives/client"
 	incentiveskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/incentives/keeper"
@@ -194,6 +197,7 @@ var (
 		epochs.AppModuleBasic{},
 		claims.AppModuleBasic{},
 		recovery.AppModuleBasic{},
+		feesplit.AppModuleBasic{},
 	)
 
 	// module account permissions
@@ -275,6 +279,7 @@ type Arcis struct {
 	EpochsKeeper     epochskeeper.Keeper
 	VestingKeeper    vestingkeeper.Keeper
 	RecoveryKeeper   *recoverykeeper.Keeper
+	FeesplitKeeper   feesplitkeeper.Keeper
 
 	// the module manager
 	mm *module.Manager
@@ -331,6 +336,7 @@ func NewArcis(
 		// arcis keys
 		inflationtypes.StoreKey, erc20types.StoreKey, incentivestypes.StoreKey,
 		epochstypes.StoreKey, claimstypes.StoreKey, vestingtypes.StoreKey,
+		feesplittypes.StoreKey,
 	)
 
 	// Add the EVM transient store key
@@ -459,6 +465,12 @@ func NewArcis(
 		app.AccountKeeper, app.BankKeeper, app.InflationKeeper, app.StakingKeeper, app.EvmKeeper,
 	)
 
+	app.FeesplitKeeper = feesplitkeeper.NewKeeper(
+		keys[feesplittypes.StoreKey], appCodec, app.GetSubspace(feesplittypes.ModuleName),
+		app.BankKeeper, app.EvmKeeper,
+		authtypes.FeeCollectorName,
+	)
+
 	epochsKeeper := epochskeeper.NewKeeper(appCodec, keys[epochstypes.StoreKey])
 	app.EpochsKeeper = *epochsKeeper.SetHooks(
 		epochskeeper.NewMultiEpochHooks(
@@ -478,6 +490,7 @@ func NewArcis(
 		evmkeeper.NewMultiEvmHooks(
 			app.Erc20Keeper.Hooks(),
 			app.IncentivesKeeper.Hooks(),
+			app.FeesplitKeeper.Hooks(),
 			app.ClaimsKeeper.Hooks(),
 		),
 	)
@@ -579,6 +592,7 @@ func NewArcis(
 		claims.NewAppModule(appCodec, *app.ClaimsKeeper),
 		vesting.NewAppModule(app.VestingKeeper, app.AccountKeeper, app.BankKeeper, app.StakingKeeper),
 		recovery.NewAppModule(*app.RecoveryKeeper),
+		feesplit.NewAppModule(app.FeesplitKeeper, app.AccountKeeper),
 	)
 
 	// During begin block slashing happens after distr.BeginBlocker so that
@@ -615,6 +629,7 @@ func NewArcis(
 		claimstypes.ModuleName,
 		incentivestypes.ModuleName,
 		recoverytypes.ModuleName,
+		feesplittypes.ModuleName,
 	)
 
 	// NOTE: fee market module must go last in order to retrieve the block gas used.
@@ -647,6 +662,7 @@ func NewArcis(
 		erc20types.ModuleName,
 		incentivestypes.ModuleName,
 		recoverytypes.ModuleName,
+		feesplittypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -667,7 +683,7 @@ func NewArcis(
 		govtypes.ModuleName,
 		ibchost.ModuleName,
 		// Ethermint modules
-		// evm module denomination is used by the fees module, in AnteHandle
+		// evm module denomination is used by the feesplit module, in AnteHandle
 		evmtypes.ModuleName,
 		// NOTE: feemarket module needs to be initialized before genutil module:
 		// gentx transactions use MinGasPriceDecorator.AnteHandle
@@ -686,6 +702,7 @@ func NewArcis(
 		incentivestypes.ModuleName,
 		epochstypes.ModuleName,
 		recoverytypes.ModuleName,
+		feesplittypes.ModuleName,
 		// NOTE: crisis module must go at the end to check for invariants on each module
 		crisistypes.ModuleName,
 	)
@@ -1005,6 +1022,7 @@ func initParamsKeeper(
 	paramsKeeper.Subspace(claimstypes.ModuleName)
 	paramsKeeper.Subspace(incentivestypes.ModuleName)
 	paramsKeeper.Subspace(recoverytypes.ModuleName)
+	paramsKeeper.Subspace(feesplittypes.ModuleName)
 	return paramsKeeper
 }
 
