@@ -65,7 +65,7 @@ The following chat channels and forums are a great spot to ask questions about A
 - [Arcis Twitter](https://twitter.com/ArcisOrg)
 - [Arcis Discord](https://discord.gg/arcis)
 - [Arcis Forum](https://commonwealth.im/arcis)
-- [Ambiplatforms-TORQUE Twitter](https://twitter.com/Ambiplatforms-TORQUEHQ)
+- [Ambiplatforms-TORQUE Twitter](https://twitter.com/devtorqueHQ)
 
 ## Contributing
 
