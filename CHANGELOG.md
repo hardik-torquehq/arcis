@@ -279,7 +279,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (app) [\#128](https://github.com/Ambiplatforms-TORQUE/arcis/pull/128) Add ibc-go `TestingApp` interface.
 - (ci) [\#117](https://github.com/Ambiplatforms-TORQUE/arcis/pull/117) Enable automatic backport of PRs.
 - (deps) [\#135](https://github.com/Ambiplatforms-TORQUE/arcis/pull/135) Bump Ethermint version to [`v0.9.0`](https://github.com/Ambiplatforms-TORQUE/ethermint/releases/tag/v0.9.0)
-- (ci) [\#136](https://github.com/Ambiplatforms-TORQUE/arcis/pull/136) Deploy `arcis` docker container to [docker hub](https://hub.docker.com/u/ambiplatforms-torquehq) for every versioned releases
+- (ci) [\#136](https://github.com/Ambiplatforms-TORQUE/arcis/pull/136) Deploy `arcis` docker container to [docker hub](https://hub.docker.com/u/devtorquehq) for every versioned releases
 
 ### Bug Fixes
 
