@@ -112,6 +112,7 @@ import (
 	v4 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v4"
 	v5 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v5"
 	v6 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v6"
+	v7 "github.com/Ambiplatforms-TORQUE/arcis/v6/app/upgrades/v7"
 	"github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims"
 	claimskeeper "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/keeper"
 	claimstypes "github.com/Ambiplatforms-TORQUE/arcis/v6/x/claims/types"
@@ -1072,6 +1073,15 @@ func (app *Arcis) setupUpgradeHandlers() {
 		),
 	)
 
+	// v7 upgrade handler
+	app.UpgradeKeeper.SetUpgradeHandler(
+		v7.UpgradeName,
+		v7.CreateUpgradeHandler(
+			app.mm, app.configurator,
+			app.BankKeeper,
+		),
+	)
+
 	// When a planned update height is reached, the old binary will panic
 	// writing on disk the height and name of the update that triggered it
 	// This will read that value, and execute the preparations for the upgrade.
@@ -1095,6 +1105,8 @@ func (app *Arcis) setupUpgradeHandlers() {
 		// no store upgrades in v5
 	case v6.UpgradeName:
 		// no store upgrades in v6
+	case v7.UpgradeName:
+		// no store upgrades in v7
 	}
 
 	if storeUpgrades != nil {
