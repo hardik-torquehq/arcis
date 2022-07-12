@@ -69,6 +69,37 @@
   
     - [Msg](#arcis.erc20.v1.Msg)
   
+- [arcis/feesplit/v1/feesplit.proto](#arcis/feesplit/v1/feesplit.proto)
+    - [FeeSplit](#arcis.feesplit.v1.FeeSplit)
+  
+- [arcis/feesplit/v1/genesis.proto](#arcis/feesplit/v1/genesis.proto)
+    - [GenesisState](#arcis.feesplit.v1.GenesisState)
+    - [Params](#arcis.feesplit.v1.Params)
+  
+- [arcis/feesplit/v1/query.proto](#arcis/feesplit/v1/query.proto)
+    - [QueryDeployerFeeSplitsRequest](#arcis.feesplit.v1.QueryDeployerFeeSplitsRequest)
+    - [QueryDeployerFeeSplitsResponse](#arcis.feesplit.v1.QueryDeployerFeeSplitsResponse)
+    - [QueryFeeSplitRequest](#arcis.feesplit.v1.QueryFeeSplitRequest)
+    - [QueryFeeSplitResponse](#arcis.feesplit.v1.QueryFeeSplitResponse)
+    - [QueryFeeSplitsRequest](#arcis.feesplit.v1.QueryFeeSplitsRequest)
+    - [QueryFeeSplitsResponse](#arcis.feesplit.v1.QueryFeeSplitsResponse)
+    - [QueryParamsRequest](#arcis.feesplit.v1.QueryParamsRequest)
+    - [QueryParamsResponse](#arcis.feesplit.v1.QueryParamsResponse)
+    - [QueryWithdrawerFeeSplitsRequest](#arcis.feesplit.v1.QueryWithdrawerFeeSplitsRequest)
+    - [QueryWithdrawerFeeSplitsResponse](#arcis.feesplit.v1.QueryWithdrawerFeeSplitsResponse)
+  
+    - [Query](#arcis.feesplit.v1.Query)
+  
+- [arcis/feesplit/v1/tx.proto](#arcis/feesplit/v1/tx.proto)
+    - [MsgCancelFeeSplit](#arcis.feesplit.v1.MsgCancelFeeSplit)
+    - [MsgCancelFeeSplitResponse](#arcis.feesplit.v1.MsgCancelFeeSplitResponse)
+    - [MsgRegisterFeeSplit](#arcis.feesplit.v1.MsgRegisterFeeSplit)
+    - [MsgRegisterFeeSplitResponse](#arcis.feesplit.v1.MsgRegisterFeeSplitResponse)
+    - [MsgUpdateFeeSplit](#arcis.feesplit.v1.MsgUpdateFeeSplit)
+    - [MsgUpdateFeeSplitResponse](#arcis.feesplit.v1.MsgUpdateFeeSplitResponse)
+  
+    - [Msg](#arcis.feesplit.v1.Msg)
+  
 - [arcis/incentives/v1/incentives.proto](#arcis/incentives/v1/incentives.proto)
     - [CancelIncentiveProposal](#arcis.incentives.v1.CancelIncentiveProposal)
     - [GasMeter](#arcis.incentives.v1.GasMeter)
@@ -922,6 +953,383 @@ Msg defines the erc20 Msg service.
 | ----------- | ------------ | ------------- | ------------| ------- | -------- |
 | `ConvertCoin` | [MsgConvertCoin](#arcis.erc20.v1.MsgConvertCoin) | [MsgConvertCoinResponse](#arcis.erc20.v1.MsgConvertCoinResponse) | ConvertCoin mints a ERC20 representation of the native Cosmos coin denom that is registered on the token mapping. | GET|/arcis/erc20/v1/tx/convert_coin|
 | `ConvertERC20` | [MsgConvertERC20](#arcis.erc20.v1.MsgConvertERC20) | [MsgConvertERC20Response](#arcis.erc20.v1.MsgConvertERC20Response) | ConvertERC20 mints a native Cosmos coin representation of the ERC20 token contract that is registered on the token mapping. | GET|/arcis/erc20/v1/tx/convert_erc20|
+
+ <!-- end services -->
+
+
+
+<a name="arcis/feesplit/v1/feesplit.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## arcis/feesplit/v1/feesplit.proto
+
+
+
+<a name="arcis.feesplit.v1.FeeSplit"></a>
+
+### FeeSplit
+FeeSplit defines an instance that organizes fee distribution conditions for
+the owner of a given smart contract
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_address` | [string](#string) |  | hex address of registered contract |
+| `deployer_address` | [string](#string) |  | bech32 address of contract deployer |
+| `withdrawer_address` | [string](#string) |  | bech32 address of account receiving the transaction fees it defaults to deployer_address |
+
+
+
+
+
+ <!-- end messages -->
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+ <!-- end services -->
+
+
+
+<a name="arcis/feesplit/v1/genesis.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## arcis/feesplit/v1/genesis.proto
+
+
+
+<a name="arcis.feesplit.v1.GenesisState"></a>
+
+### GenesisState
+GenesisState defines the module's genesis state.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `params` | [Params](#arcis.feesplit.v1.Params) |  | module parameters |
+| `fee_splits` | [FeeSplit](#arcis.feesplit.v1.FeeSplit) | repeated | active registered contracts for fee distribution |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.Params"></a>
+
+### Params
+Params defines the feesplit module params
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `enable_fee_split` | [bool](#bool) |  | enable_fee_split defines a parameter to enable the feesplit module |
+| `developer_shares` | [string](#string) |  | developer_shares defines the proportion of the transaction fees to be distributed to the registered contract owner |
+| `addr_derivation_cost_create` | [uint64](#uint64) |  | addr_derivation_cost_create defines the cost of address derivation for verifying the contract deployer at fee registration |
+
+
+
+
+
+ <!-- end messages -->
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+ <!-- end services -->
+
+
+
+<a name="arcis/feesplit/v1/query.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## arcis/feesplit/v1/query.proto
+
+
+
+<a name="arcis.feesplit.v1.QueryDeployerFeeSplitsRequest"></a>
+
+### QueryDeployerFeeSplitsRequest
+QueryDeployerFeeSplitsRequest is the request type for the
+Query/DeployerFeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `deployer_address` | [string](#string) |  | deployer bech32 address |
+| `pagination` | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryDeployerFeeSplitsResponse"></a>
+
+### QueryDeployerFeeSplitsResponse
+QueryDeployerFeeSplitsResponse is the response type for the
+Query/DeployerFeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_addresses` | [string](#string) | repeated |  |
+| `pagination` | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryFeeSplitRequest"></a>
+
+### QueryFeeSplitRequest
+QueryFeeSplitRequest is the request type for the Query/FeeSplit RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_address` | [string](#string) |  | contract identifier is the hex contract address of a contract |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryFeeSplitResponse"></a>
+
+### QueryFeeSplitResponse
+QueryFeeSplitResponse is the response type for the Query/FeeSplit RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `fee_split` | [FeeSplit](#arcis.feesplit.v1.FeeSplit) |  |  |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryFeeSplitsRequest"></a>
+
+### QueryFeeSplitsRequest
+QueryFeeSplitsRequest is the request type for the Query/FeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `pagination` | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryFeeSplitsResponse"></a>
+
+### QueryFeeSplitsResponse
+QueryFeeSplitsResponse is the response type for the Query/FeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `fee_splits` | [FeeSplit](#arcis.feesplit.v1.FeeSplit) | repeated |  |
+| `pagination` | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryParamsRequest"></a>
+
+### QueryParamsRequest
+QueryParamsRequest is the request type for the Query/Params RPC method.
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryParamsResponse"></a>
+
+### QueryParamsResponse
+QueryParamsResponse is the response type for the Query/Params RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `params` | [Params](#arcis.feesplit.v1.Params) |  |  |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryWithdrawerFeeSplitsRequest"></a>
+
+### QueryWithdrawerFeeSplitsRequest
+QueryWithdrawerFeeSplitsRequest is the request type for the
+Query/WithdrawerFeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `withdrawer_address` | [string](#string) |  | withdrawer bech32 address |
+| `pagination` | [cosmos.base.query.v1beta1.PageRequest](#cosmos.base.query.v1beta1.PageRequest) |  | pagination defines an optional pagination for the request. |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.QueryWithdrawerFeeSplitsResponse"></a>
+
+### QueryWithdrawerFeeSplitsResponse
+QueryWithdrawerFeeSplitsResponse is the response type for the
+Query/WithdrawerFeeSplits RPC method.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_addresses` | [string](#string) | repeated |  |
+| `pagination` | [cosmos.base.query.v1beta1.PageResponse](#cosmos.base.query.v1beta1.PageResponse) |  | pagination defines the pagination in the response. |
+
+
+
+
+
+ <!-- end messages -->
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+
+<a name="arcis.feesplit.v1.Query"></a>
+
+### Query
+Query defines the gRPC querier service.
+
+| Method Name | Request Type | Response Type | Description | HTTP Verb | Endpoint |
+| ----------- | ------------ | ------------- | ------------| ------- | -------- |
+| `FeeSplits` | [QueryFeeSplitsRequest](#arcis.feesplit.v1.QueryFeeSplitsRequest) | [QueryFeeSplitsResponse](#arcis.feesplit.v1.QueryFeeSplitsResponse) | FeeSplits retrieves all registered fees plits | GET|/arcis/feesplit/v1/feesplits|
+| `FeeSplit` | [QueryFeeSplitRequest](#arcis.feesplit.v1.QueryFeeSplitRequest) | [QueryFeeSplitResponse](#arcis.feesplit.v1.QueryFeeSplitResponse) | FeeSplit retrieves a registered fee split for a given contract address | GET|/arcis/feesplit/v1/feesplits/{contract_address}|
+| `Params` | [QueryParamsRequest](#arcis.feesplit.v1.QueryParamsRequest) | [QueryParamsResponse](#arcis.feesplit.v1.QueryParamsResponse) | Params retrieves the feesplit module params | GET|/arcis/feesplit/v1/params|
+| `DeployerFeeSplits` | [QueryDeployerFeeSplitsRequest](#arcis.feesplit.v1.QueryDeployerFeeSplitsRequest) | [QueryDeployerFeeSplitsResponse](#arcis.feesplit.v1.QueryDeployerFeeSplitsResponse) | DeployerFeeSplits retrieves all fee splits that a given deployer has registered | GET|/arcis/feesplit/v1/feesplits/{deployer_address}|
+| `WithdrawerFeeSplits` | [QueryWithdrawerFeeSplitsRequest](#arcis.feesplit.v1.QueryWithdrawerFeeSplitsRequest) | [QueryWithdrawerFeeSplitsResponse](#arcis.feesplit.v1.QueryWithdrawerFeeSplitsResponse) | WithdrawerFeeSplits retrieves all fees plits with a given withdrawer address | GET|/arcis/feesplit/v1/feesplits/{withdrawer_address}|
+
+ <!-- end services -->
+
+
+
+<a name="arcis/feesplit/v1/tx.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## arcis/feesplit/v1/tx.proto
+
+
+
+<a name="arcis.feesplit.v1.MsgCancelFeeSplit"></a>
+
+### MsgCancelFeeSplit
+MsgCancelFeeSplit defines a message that cancels a registered FeeSplit
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_address` | [string](#string) |  | contract hex address |
+| `deployer_address` | [string](#string) |  | deployer bech32 address |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.MsgCancelFeeSplitResponse"></a>
+
+### MsgCancelFeeSplitResponse
+MsgCancelFeeSplitResponse defines the MsgCancelFeeSplit response type
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.MsgRegisterFeeSplit"></a>
+
+### MsgRegisterFeeSplit
+MsgRegisterFeeSplit defines a message that registers a FeeSplit
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_address` | [string](#string) |  | contract hex address |
+| `deployer_address` | [string](#string) |  | bech32 address of message sender, must be the same as the origin EOA sending the transaction which deploys the contract |
+| `withdrawer_address` | [string](#string) |  | bech32 address of account receiving the transaction fees |
+| `nonces` | [uint64](#uint64) | repeated | array of nonces from the address path, where the last nonce is the nonce that determines the contract's address - it can be an EOA nonce or a factory contract nonce |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.MsgRegisterFeeSplitResponse"></a>
+
+### MsgRegisterFeeSplitResponse
+MsgRegisterFeeSplitResponse defines the MsgRegisterFeeSplit response type
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.MsgUpdateFeeSplit"></a>
+
+### MsgUpdateFeeSplit
+MsgUpdateFeeSplit defines a message that updates the withdrawer address for a
+registered FeeSplit
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `contract_address` | [string](#string) |  | contract hex address |
+| `deployer_address` | [string](#string) |  | deployer bech32 address |
+| `withdrawer_address` | [string](#string) |  | new withdrawer bech32 address for receiving the transaction fees |
+
+
+
+
+
+
+<a name="arcis.feesplit.v1.MsgUpdateFeeSplitResponse"></a>
+
+### MsgUpdateFeeSplitResponse
+MsgUpdateFeeSplitResponse defines the MsgUpdateFeeSplit response type
+
+
+
+
+
+ <!-- end messages -->
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+
+<a name="arcis.feesplit.v1.Msg"></a>
+
+### Msg
+Msg defines the fees Msg service.
+
+| Method Name | Request Type | Response Type | Description | HTTP Verb | Endpoint |
+| ----------- | ------------ | ------------- | ------------| ------- | -------- |
+| `RegisterFeeSplit` | [MsgRegisterFeeSplit](#arcis.feesplit.v1.MsgRegisterFeeSplit) | [MsgRegisterFeeSplitResponse](#arcis.feesplit.v1.MsgRegisterFeeSplitResponse) | RegisterFeeSplit registers a new contract for receiving transaction fees | POST|/arcis/feesplit/v1/tx/register_feesplit|
+| `UpdateFeeSplit` | [MsgUpdateFeeSplit](#arcis.feesplit.v1.MsgUpdateFeeSplit) | [MsgUpdateFeeSplitResponse](#arcis.feesplit.v1.MsgUpdateFeeSplitResponse) | UpdateFeeSplit updates the withdrawer address of a fee split | POST|/arcis/feesplit/v1/tx/update_feesplit|
+| `CancelFeeSplit` | [MsgCancelFeeSplit](#arcis.feesplit.v1.MsgCancelFeeSplit) | [MsgCancelFeeSplitResponse](#arcis.feesplit.v1.MsgCancelFeeSplitResponse) | CancelFeeSplit cancels a contract's fee registration and further receival of transaction fees | POST|/arcis/feesplit/v1/tx/cancel_feesplit|
 
  <!-- end services -->
 
