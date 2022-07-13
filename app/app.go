@@ -1079,6 +1079,7 @@ func (app *Arcis) setupUpgradeHandlers() {
 		v7.CreateUpgradeHandler(
 			app.mm, app.configurator,
 			app.BankKeeper,
+			app.InflationKeeper,
 		),
 	)
 
