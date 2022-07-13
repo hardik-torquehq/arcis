@@ -488,7 +488,7 @@ Sends transaction from given account to a given account.
 
     `to`: `DATA`, 20 Bytes - (optional when creating new contract) The address the transaction is directed to.
 
-    `gas`: QUANTITY - (optional, default: 90000) Integer of the gas provided for the transaction execution. It will return unused gas.
+    `gas`: QUANTITY - (optional, default: 10000) Integer of the gas provided for the transaction execution. It will return unused gas.
 
     `gasPrice`: QUANTITY - (optional, default: To-Be-Determined) Integer of the gasPrice used for each paid gas
 

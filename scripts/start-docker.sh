@@ -1,11 +1,11 @@
 #!/bin/bash
 
 KEY="mykey"
-CHAINID="arcis_9000-1"
+CHAINID="arcis_1000-1"
 MONIKER="mymoniker"
 
 echo "create and add new keys"
-./arcisd keys add $KEY --home /arcis --no-backup --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
+./arcisd keys add $KEY --home /arcis --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
 echo "init Arcis with moniker=$MONIKER and chain-id=$CHAINID"
 ./arcisd init $MONIKER --chain-id $CHAINID --home /arcis
 echo "prepare genesis: Allocate genesis accounts"

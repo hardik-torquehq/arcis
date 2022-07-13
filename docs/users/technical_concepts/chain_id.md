@@ -64,7 +64,7 @@ The following table provides an example where the second row corresponds to an u
 
 | ChainID        | Identifier | EIP155 Number | Version Number |
 | -------------- | ---------- | ------------- | -------------- |
-| `arcis_9000-1` | arcis      | 9000          | 1              |
-| `arcis_9000-2` | arcis      | 9000          | 2              |
+| `arcis_1000-1` | arcis      | 1000          | 1              |
+| `arcis_1000-2` | arcis      | 1000          | 2              |
 | `...`          | ...        | ...           | ...            |
-| `arcis_9000-N` | arcis      | 9000          | N              |
+| `arcis_1000-N` | arcis      | 1000          | N              |

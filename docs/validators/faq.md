@@ -61,7 +61,7 @@ arcisd tx staking create-validator
     --commission-max-change-rate="0.01"
     --min-self-delegation "1"
     --moniker "validator"
-    --chain-id "arcis_9000-4"
+    --chain-id "arcis_1000-4"
     --gas auto
     --node tcp://127.0.0.1:26647
 ```

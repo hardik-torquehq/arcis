@@ -1,5 +1,5 @@
 KEY="mykey"
-CHAINID="arcis_9000-1"
+CHAINID="arcis_1000-1"
 MONIKER="localtestnet"
 KEYRING="test"
 KEYALGO="eth_secp256k1"

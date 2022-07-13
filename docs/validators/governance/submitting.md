@@ -116,7 +116,7 @@ Users can query the proposal details with the `arcisd` command-line interface us
   "recipient": "arcis15dxa2e3lc8zvmryv62x3stt86yhplu2vs9kxct",
   "amount": [
     {
-      "amount": "12900000000000000000000",
+      "amount": "12100000000000000000000",
       "denom": "aarcis"
     }
   ],
@@ -214,8 +214,8 @@ Use the `arcis tx gov --help` flag to get more info about the governance command
    - the network still accepts zero fees, but many nodes will not transmit your transaction to the network without a minimum fee
    - many nodes (including the Figment node) use a minimum fee to desincentivize transaction spamming
    - 7500aarcis is equal to 0.0075 ARCIS
-6. `--chain-id arcis_90001-2` is Arcis Mainnet. For current and past chain-id's, please look at the [Ambiplatforms-TORQUE/mainnet resource](https://github.com/Ambiplatforms-TORQUE/mainnet)
-   - the testnet chain ID is [arcis_9000-4](https://testnet.mintscan.io/arcis). For current and past testnet information, please look at the [testnet repository](https://github.com/Ambiplatforms-TORQUE/testnets)
+6. `--chain-id arcis_10001-2` is Arcis Mainnet. For current and past chain-id's, please look at the [Ambiplatforms-TORQUE/mainnet resource](https://github.com/Ambiplatforms-TORQUE/mainnet)
+   - the testnet chain ID is [arcis_1000-4](https://testnet.mintscan.io/arcis). For current and past testnet information, please look at the [testnet repository](https://github.com/Ambiplatforms-TORQUE/testnets)
 7. `--node` is using a full node to send the transaction to the Arcis Mainnet
 
 ### Verifying your transaction

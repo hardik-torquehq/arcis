@@ -80,7 +80,7 @@ arcisd tx bank send \
     test1 \
     arcis1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     10000000000000000000aarcis \
-    --chain-id=arcis_9000-4 \
+    --chain-id=arcis_1000-4 \
     --gas=auto \
     --fees=1000000aarcis \
     --broadcast-mode=block
@@ -97,7 +97,7 @@ arcisd tx bank send \
     5000000000000000000aarcis \
     --gas=200000 \
     --fees=1000000aarcis \
-    --chain-id=arcis_9000-4 \
+    --chain-id=arcis_1000-4 \
     --generate-only > unsignedTx.json
 ```
 
@@ -152,7 +152,7 @@ arcisd tx sign \
     --multisig=arcis1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     --from=test1 \
     --output-document=test1sig.json \
-    --chain-id=arcis_9000-4
+    --chain-id=arcis_1000-4
 ```
 
 ```sh
@@ -161,7 +161,7 @@ arcisd tx sign \
     --multisig=arcis1e0fx0q9meawrcq7fmma9x60gk35lpr4xk3884m \
     --from=test2 \
     --output-document=test2sig.json \
-    --chain-id=arcis_9000-4
+    --chain-id=arcis_1000-4
 ```
 
 ### Step 4: Create multisignature
@@ -174,7 +174,7 @@ arcisd tx multisign \
     multi \
     test1sig.json test2sig.json \
     --output-document=signedTx.json \
-    --chain-id=arcis_9000-4
+    --chain-id=arcis_1000-4
 ```
 
 The TX is now signed:
@@ -266,6 +266,6 @@ The TX is now signed:
 
 ```sh
 arcisd tx broadcast signedTx.json \
-    --chain-id=arcis_9000-4 \
+    --chain-id=arcis_1000-4 \
     --broadcast-mode=block
 ```
