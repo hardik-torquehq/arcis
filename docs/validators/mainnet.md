@@ -20,8 +20,8 @@ You need to set the **genesis file** and **seeds**. If you need more information
 
 | Chain ID       | Description     | Site                                                               | Version                                                      | Status  |
 | -------------- | --------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ | ------- |
-| `arcis_9001-2` | Arcis Mainnet 2 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_9001-2) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
-| `arcis_9001-1` | Arcis Mainnet 1 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_9001-1) | [`v2.0.1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/v2.0.1) | `Stale` |
+| `arcis_1002-2` | Arcis Mainnet 2 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_1002-2) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
+| `arcis_1002-1` | Arcis Mainnet 1 | [Arcis](https://github.com/Ambiplatforms-TORQUE/mainnet/tree/main/arcis_1002-1) | [`v2.0.1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/v2.0.1) | `Stale` |
 
 ## Install `arcisd`
 
@@ -40,7 +40,7 @@ See the Official [Chain IDs](./../users/technical_concepts/chain_id.md#official-
 :::
 
 ```bash
-arcisd config chain-id arcis_9001-2
+arcisd config chain-id arcis_1002-2
 ```
 
 ## Initialize Node
@@ -48,7 +48,7 @@ arcisd config chain-id arcis_9001-2
 We need to initialize the node to create all the necessary validator and node configuration files:
 
 ```bash
-arcisd init <your_custom_moniker> --chain-id arcis_9001-2
+arcisd init <your_custom_moniker> --chain-id arcis_1002-2
 ```
 
 ::: danger
@@ -96,7 +96,7 @@ seeds = "<node-id>@<ip>:<p2p port>"
 You can use the following code to get seeds from the repo and add it to your config:
 
 ```bash
-SEEDS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/mainnet/main/arcis_9001-2/seeds.txt | awk '{print $1}' | paste -s -d, -`
+SEEDS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/mainnet/main/arcis_1002-2/seeds.txt | awk '{print $1}' | paste -s -d, -`
 sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.arcisd/config/config.toml
 ```
 
@@ -112,7 +112,7 @@ available peers on the [`mainnet`](https://github.com/Ambiplatforms-TORQUE/mainn
 A list of available persistent peers is also available in the `#find-peers` channel in the [Arcis Discord](https://discord.gg/arcis). You can get a random 10 entries from the `peers.txt` file in the `PEERS` variable by running the following command:
 
 ```bash
-PEERS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/mainnet/main/arcis_9001-2/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+PEERS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/mainnet/main/arcis_1002-2/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
 ```
 
 Use `sed` to include them into the configuration. You can also add them manually:

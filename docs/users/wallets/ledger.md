@@ -48,8 +48,8 @@ In the table below you can find a list of Chain IDs to use with the Ethereum Led
 
 |               | EIP155 chain ID |
 | ------------- | --------------- |
-| Arcis mainnet | `9001`          |
-| Arcis testnet | `9000`          |
+| Arcis mainnet | `1002`          |
+| Arcis testnet | `1000`          |
 
 ## Import your Ledger Account
 

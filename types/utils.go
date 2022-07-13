@@ -14,9 +14,9 @@ import (
 
 const (
 	// MainnetChainID defines the Arcis EIP155 chain ID for mainnet
-	MainnetChainID = "arcis_9001"
+	MainnetChainID = "arcis_1002"
 	// TestnetChainID defines the Arcis EIP155 chain ID for testnet
-	TestnetChainID = "arcis_9000"
+	TestnetChainID = "arcis_1000"
 )
 
 // IsMainnet returns true if the chain-id has the Arcis mainnet EIP155 chain prefix.

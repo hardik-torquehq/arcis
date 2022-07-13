@@ -66,7 +66,7 @@ The command above will create a docker container: `devtorquehq/arcis:latest`. No
 docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd devtorquehq/arcis:latest arcisd version
 
 # To initialize
-# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd devtorquehq/arcis:latest arcisd init test-chain --chain-id test_9000-2
+# docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd devtorquehq/arcis:latest arcisd init test-chain --chain-id test_1000-2
 
 # To run
 # docker run -it -p 26657:26657 -p 26656:26656 -v ~/.arcisd/:/root/.arcisd devtorquehq/arcis:latest arcisd start

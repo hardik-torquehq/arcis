@@ -24,7 +24,7 @@ import (
 )
 
 // ChainIDPrefix defines the default chain ID prefix for Arcis test chains
-var ChainIDPrefix = "arcis_9000-"
+var ChainIDPrefix = "arcis_1000-"
 
 func init() {
 	ibcgotesting.ChainIDPrefix = ChainIDPrefix

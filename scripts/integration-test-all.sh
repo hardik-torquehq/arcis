@@ -17,7 +17,7 @@ RPC_PORT="854"
 IP_ADDR="0.0.0.0"
 
 KEY="mykey"
-CHAINID="arcis_9000-1"
+CHAINID="arcis_1000-1"
 MONIKER="mymoniker"
 
 ## default port prefixes for arcisd

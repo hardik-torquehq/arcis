@@ -12,10 +12,10 @@ You specify the network you want to join by setting the **genesis file** and **s
 
 | Testnet Chain ID | Description                       | Site                                                                       | Version                                                                                  | Status  |
 | ---------------- | --------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------- |
-| `arcis_9000-4`   | Arcis_9000-4 Testnet              | [Arcis 9000-4](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-4) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
-| `arcis_9000-3`   | Arcis_9000-3 Testnet              | [Arcis 9000-3](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_9000-3) | [`v1.0.0-beta1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/tag/v1.0.0-beta1)             | `Stale` |
-| `arcis_9000-2`   | Olympus Mons Incentivized Testnet | [Olympus Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/olympus_mons) | [`v0.3.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
-| `arcis_9000-1`   | Arsia Mons Testnet                | [Arsia Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arsia_mons)     | [`v0.1.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
+| `arcis_1000-4`   | Arcis_1000-4 Testnet              | [Arcis 1000-4](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_1000-4) | [`{{ $themeConfig.project.latest_version }}`](https://github.com/Ambiplatforms-TORQUE/arcis/releases) | `Live`  |
+| `arcis_1000-3`   | Arcis_1000-3 Testnet              | [Arcis 1000-3](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arcis_1000-3) | [`v1.0.0-beta1`](https://github.com/Ambiplatforms-TORQUE/arcis/releases/tag/v1.0.0-beta1)             | `Stale` |
+| `arcis_1000-2`   | Olympus Mons Incentivized Testnet | [Olympus Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/olympus_mons) | [`v0.3.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
+| `arcis_1000-1`   | Arsia Mons Testnet                | [Arsia Mons](https://github.com/Ambiplatforms-TORQUE/testnets/tree/main/arsia_mons)     | [`v0.1.x`](https://github.com/Ambiplatforms-TORQUE/arcis/releases)                                    | `Stale` |
 
 ## Install `arcisd`
 
@@ -34,7 +34,7 @@ See the Official [Chain IDs](./../users/technical_concepts/chain_id.md#official-
 :::
 
 ```bash
-arcisd config chain-id arcis_9000-4
+arcisd config chain-id arcis_1000-4
 ```
 
 ## Initialize Node
@@ -42,7 +42,7 @@ arcisd config chain-id arcis_9000-4
 We need to initialize the node to create all the necessary validator and node configuration files:
 
 ```bash
-arcisd init <your_custom_moniker> --chain-id arcis_9000-4
+arcisd init <your_custom_moniker> --chain-id arcis_1000-4
 ```
 
 ::: danger
@@ -60,7 +60,7 @@ Check the `genesis.json` file from the [`testnets`](https://github.com/Ambiplatf
 
 ```bash
 sudo apt install -y unzip wget
-wget -P ~/.arcisd/config https://github.com/Ambiplatforms-TORQUE/testnets/raw/main/arcis_9000-4/genesis.zip
+wget -P ~/.arcisd/config https://github.com/Ambiplatforms-TORQUE/testnets/raw/main/arcis_1000-4/genesis.zip
 cd ~/.arcisd/config
 unzip genesis.zip
 rm genesis.zip
@@ -93,7 +93,7 @@ seeds = "<node-id>@<ip>:<p2p port>"
 You can use the following code to get seeds from the repo and add it to your config:
 
 ```bash
-SEEDS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/testnets/main/arcis_9000-4/seeds.txt | awk '{print $1}' | paste -s -d, -`
+SEEDS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/testnets/main/arcis_1000-4/seeds.txt | awk '{print $1}' | paste -s -d, -`
 sed -i.bak -e "s/^seeds =.*/seeds = \"$SEEDS\"/" ~/.arcisd/config/config.toml
 ```
 
@@ -109,7 +109,7 @@ available peers on the [`testnets`](https://github.com/Ambiplatforms-TORQUE/test
 A list of available persistent peers is also available in the `#find-peers` channel in the [Arcis Discord](https://discord.gg/arcis). You can get a random 10 entries from the `peers.txt` file in the `PEERS` variable by running the following command:
 
 ```bash
-PEERS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/testnets/main/arcis_9000-4/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
+PEERS=`curl -sL https://raw.githubusercontent.com/Ambiplatforms-TORQUE/testnets/main/arcis_1000-4/peers.txt | sort -R | head -n 10 | awk '{print $1}' | paste -s -d, -`
 ```
 
 Use `sed` to include them into the configuration. You can also add them manually:
