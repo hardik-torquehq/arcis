@@ -521,20 +521,9 @@ localnet-build:
 	@$(MAKE) -C networks/local
 
 # Start a 4-node testnet locally
-localnet-start: localnet-stop
-ifeq ($(OS),Windows_NT)
-	mkdir localnet-setup &
-	@$(MAKE) localnet-build
-
-	IF not exist "build/node0/$(ARCIS_BINARY)/config/genesis.json" docker run --rm -v $(CURDIR)/build\arcis\Z arcisd/node "./arcisd testnet --v 4 -o /arcis --keyring-backend=test --ip-addresses arcisdnode0,arcisdnode1,arcisdnode2,arcisdnode3"
+localnet-start: localnet-stop localnet-build
+	@if ! [ -f build/node0/$(ARCIS_BINARY)/config/genesis.json ]; then docker run --rm -v $(CURDIR)/build:/arcis:Z arcis/node "./arcisd testnet init-files --v 4 -o /arcis --keyring-backend=test --starting-ip-address 192.167.10.2"; fi
 	docker-compose up -d
-else
-	mkdir -p localnet-setup
-	@$(MAKE) localnet-build
-
-	if ! [ -f localnet-setup/node0/$(ARCIS_BINARY)/config/genesis.json ]; then docker run --rm -v $(CURDIR)/localnet-setup:/arcis:Z arcisd/node "./arcisd testnet --v 4 -o /arcis --keyring-backend=test --ip-addresses arcisdnode0,arcisdnode1,arcisdnode2,arcisdnode3"; fi
-	docker-compose up -d
-endif
 
 # Stop testnet
 localnet-stop:
@@ -543,28 +532,28 @@ localnet-stop:
 # Clean testnet
 localnet-clean:
 	docker-compose down
-	sudo rm -rf localnet-setup
+	sudo rm -rf build/*
 
  # Reset testnet
 localnet-unsafe-reset:
 	docker-compose down
 ifeq ($(OS),Windows_NT)
-	@docker run --rm -v $(CURDIR)\localnet-setup\node0\arcisd:arcis\Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node1\arcisd:arcis\Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node2\arcisd:arcis\Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)\localnet-setup\node3\arcisd:arcis\Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)\build\node0\arcisd:/arcis\Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)\build\node1\arcisd:/arcis\Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)\build\node2\arcisd:/arcis\Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)\build\node3\arcisd:/arcis\Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
 else
-	@docker run --rm -v $(CURDIR)/localnet-setup/node0/arcisd:/arcis:Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node1/arcisd:/arcis:Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node2/arcisd:/arcis:Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
-	@docker run --rm -v $(CURDIR)/localnet-setup/node3/arcisd:/arcis:Z arcisd/node "./arcisd unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)/build/node0/arcisd:/arcis:Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)/build/node1/arcisd:/arcis:Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)/build/node2/arcisd:/arcis:Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
+	@docker run --rm -v $(CURDIR)/build/node3/arcisd:/arcis:Z arcis/node "./arcisd tendermint unsafe-reset-all --home=/arcis"
 endif
 
 # Clean testnet
 localnet-show-logstream:
 	docker-compose logs --tail=1000 -f
 
-.PHONY: build-docker-local-arcis localnet-start localnet-stop
+.PHONY: localnet-build localnet-start localnet-stop
 
 ###############################################################################
 ###                                Releasing                                ###

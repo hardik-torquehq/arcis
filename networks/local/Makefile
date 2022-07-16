@@ -1,4 +1,4 @@
 all:
-	docker build --no-cache --tag arcisd/node ../.. -f arcisnode/Dockerfile
+	docker build --no-cache --tag arcis/node ../.. -f arcis/Dockerfile
 
 .PHONY: all

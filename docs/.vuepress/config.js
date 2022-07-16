@@ -62,7 +62,7 @@ module.exports = {
       rpc_url_local: 'http://localhost:8545/',
       chain_id: '1002',
       testnet_chain_id: '1000',
-      latest_version: 'v1.0.2',
+      latest_version: 'v1.0.3',
       version_number: '2',
       testnet_version_number: '4',
       testnet_evm_explorer_url: 'https://evm.arcis.dev',
