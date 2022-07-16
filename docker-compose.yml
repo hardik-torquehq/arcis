@@ -1,73 +1,63 @@
-version: "3"
+version: '3'
 
 services:
-  arcisdnode0:
-    container_name: arcisdnode0
-    image: "arcisd/node"
+  node0:
+    container_name: arcisnode0
+    image: "arcis/node"
     ports:
-      - "26657:26657"
-      - "8545:8545"
-      - "8546:8546"
-      - "8125:8125"
-    environment:
-      - ID=0
-      - LOG=${LOG:-arcisd.log}
+      - "26656-26657:26656-26657"
     volumes:
-      - ./localnet-setup/node0/arcisd:/arcis:Z
+      - ./build/node0/arcisd:/arcis:Z
+    command:
+      - /arcisd start --home /arcis
     networks:
-      - localnet
-    entrypoint: "bash start-docker.sh"
+      localnet:
+        ipv4_address: 192.167.10.2
 
-  arcisdnode1:
-    container_name: arcisdnode1
-    image: "arcisd/node"
+  node1:
+    container_name: arcisnode1
+    image: "arcis/node"
     ports:
-      - "26658:26657"
-      - "8555:8545"
-      - "8556:8546"
-      - "8126:8125"
-    environment:
-      - ID=1
-      - LOG=${LOG:-arcisd.log}
+      - "26659-26660:26656-26657"
     volumes:
-      - ./localnet-setup/node1/arcisd:/arcis:Z
+      - ./build/node1/arcisd:/arcis:Z
+    command:
+      - /arcisd start --home /arcis
     networks:
-      - localnet
-    entrypoint: "bash start-docker.sh"
+      localnet:
+        ipv4_address: 192.167.10.3
 
-  arcisdnode2:
-    container_name: arcisdnode2
-    image: "arcisd/node"
-    environment:
-      - ID=2
-      - LOG=${LOG:-arcisd.log}
+  node2:
+    container_name: arcisnode2
+    image: "arcis/node"
     ports:
-      - "26659:26657"
-      - "8565:8545"
-      - "8566:8546"
-      - "8127:8125"
+      - "26661-26662:26656-26657"
     volumes:
-      - ./localnet-setup/node2/arcisd:/arcis:Z
+      - ./build/node2/arcisd:/arcis:Z
+    command:
+      - /arcisd start --home /arcis
     networks:
-      - localnet
-    entrypoint: "bash start-docker.sh"
+      localnet:
+        ipv4_address: 192.167.10.4
 
-  arcisdnode3:
-    container_name: arcisdnode3
-    image: "arcisd/node"
-    environment:
-      - ID=3
-      - LOG=${LOG:-arcisd.log}
+  node3:
+    container_name: arcisnode3
+    image: "arcis/node"
     ports:
-      - "26660:26657"
-      - "8575:8545"
-      - "8576:8546"
-      - "8128:8125"
+      - "26663-26664:26656-26657"
     volumes:
-      - ./localnet-setup/node3/arcisd:/arcis:Z
+      - ./build/node3/arcisd:/arcis:Z
+    command:
+      - /arcisd start --home /arcis
     networks:
-      - localnet
-    entrypoint: "bash start-docker.sh"
+      localnet:
+        ipv4_address: 192.167.10.5
 
 networks:
   localnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        -
+          subnet: 192.167.10.0/16 
