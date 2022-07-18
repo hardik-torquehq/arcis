@@ -6,7 +6,7 @@ MONIKER="mymoniker"
 DATA_DIR=$(mktemp -d -t arcis-datadir.XXXXX)
 
 echo "create and add new keys"
-./arcisd keys add $KEY --home $DATA_DIR --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
+./arcisd keys add $KEY --home $DATA_DIR --no-backup --chain-id $CHAINID --algo "eth_secp256k1" --keyring-backend test
 echo "init Arcis with moniker=$MONIKER and chain-id=$CHAINID"
 ./arcisd init $MONIKER --chain-id $CHAINID --home $DATA_DIR
 echo "prepare genesis: Allocate genesis accounts"
