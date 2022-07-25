@@ -1,4 +1,7 @@
 version: v1
+name: buf.build/Ambiplatforms-TORQUE/arcis
+deps:
+    - buf.build/Ambiplatforms-TORQUE/arcis
 lint:
   use:
     - DEFAULT

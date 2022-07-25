@@ -141,19 +141,14 @@ module.exports = {
               path: '/developers/connect'
             },
             {
-              title: 'Arcis Clients',
+              title: 'Clients',
               directory: false,
               path: '/developers/clients'
             },
             {
-              title: 'Testnet Faucet',
-              directory: false,
-              path: '/developers/faucet'
-            },
-            {
-              title: 'Ethereum Tooling',
+              title: 'Guides',
               directory: true,
-              path: '/developers/tools'
+              path: '/developers/guides'
             },
             {
               title: 'Localnet',
