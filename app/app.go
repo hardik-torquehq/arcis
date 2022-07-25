@@ -1080,6 +1080,7 @@ func (app *Arcis) setupUpgradeHandlers() {
 			app.mm, app.configurator,
 			app.BankKeeper,
 			app.InflationKeeper,
+			app.ClaimsKeeper,
 		),
 	)
 
